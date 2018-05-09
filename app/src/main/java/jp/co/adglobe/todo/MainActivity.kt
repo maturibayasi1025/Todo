@@ -1,7 +1,11 @@
 package jp.co.adglobe.todo
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,5 +14,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    
+    fun sendMessage(view: View){
+        val intent = Intent(this , DisplayMessageActivity::class.java)
+        val editText = findViewById<View>(R.id.editText) as EditText
+        val message = editText.text.toString()
+        intent.putExtra(EXTRA_MESSAGE,message)
+        startActivity(intent)
+    }
+
+    companion object {
+        const val EXTRA_MESSAGE = "jp.co.adglobe.message"
+    }
+
 }
